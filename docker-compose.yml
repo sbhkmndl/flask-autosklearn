@@ -1,0 +1,6 @@
+version: "3.9"
+services:
+  flaskautosk:
+    build: .
+    ports:
+      - "9094:9094"
