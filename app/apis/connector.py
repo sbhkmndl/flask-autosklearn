@@ -103,7 +103,7 @@ class RunOperation(Resource):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-    @api.response(200, json.dumps({"message": "Sucess"}))
+    @api.response(200, json.dumps({"message": "Success"}))
     @api.response(400, json.dumps({"message": "Request couldn't process:"}))
     @api.response(500, json.dumps({"message": 'Failed to serve the request:'}))
     @api.expect(status_request_obj)

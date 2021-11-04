@@ -3,6 +3,11 @@ This library will create an end point to train a model via flask API.
 
 By executing `run.sh` it will start the Flash app.
 
+The  `TEMP_FOLDER` variable in `config.py` denotes in which folder the information will be saved.
+* `TEMP_FOLDER/<process-id>/data/` contains the training data
+* `TEMP_FOLDER/<process-id>/model.pkl` is the model saved after training completed.  
+* `TEMP_FOLDER/<process-id>/model_temp` is the directory for auto-sklearn's temp folder.  
+
 # Endpoints
 
 * `/trainer/v1/trainModel` : create an auto-sklearn model. Below is the sample request object.
