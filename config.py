@@ -1,0 +1,8 @@
+DRIVER_CONNECTOR_APIS = "Flask trainer APIs"
+CONNECTOR = "Connector"
+DESCRIPTION = "The interface that defines the APIs available."
+TITLE = "Flask Auto-sklearn trainer"
+VERSION = "0.0.1"
+BASE = "/trainer"
+API_VERSION = "/v1"
+TEMP_FOLDER = "/tmp"
