@@ -4,6 +4,7 @@ Python `3.8.5` is being used for this project.
 
 By executing `run.sh` it will start the Flash app.
 
+# Local Run
 The  `TEMP_FOLDER` variable in `config.py` denotes in which folder the information will be saved.
 * `TEMP_FOLDER/<process-id>/data/` contains the training data
 * `TEMP_FOLDER/<process-id>/model.pkl` is the model saved after training completed.  
