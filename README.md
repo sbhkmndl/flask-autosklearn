@@ -34,3 +34,23 @@ The  `TEMP_FOLDER` variable in `config.py` denotes in which folder the informati
       "processId": "<process id get from trainModel end point>"
     }
     ```
+    
+# Docker Service Up
+```buildoutcfg
+docker-compose up
+```
+### Rebuilt Image and Run
+```
+docker-compose up --build
+```
+# Access Swagger
+```
+http://localhost:9094/
+```
+# Docker Service Down
+```
+docker-compose down
+```
+
+**Note:**
+ - Saved models are mounted in current directory under `models/`
