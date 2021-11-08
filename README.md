@@ -1,5 +1,6 @@
 # Information
 This library will create an end point to train a model via flask API.
+Python `3.8.5` is being used for this project.
 
 By executing `run.sh` it will start the Flash app.
 
@@ -10,13 +11,15 @@ The  `TEMP_FOLDER` variable in `config.py` denotes in which folder the informati
 
 # Endpoints
 
-* `/trainer/v1/trainModel` : create an auto-sklearn model. Below is the sample request object.
+* `/trainer/v1/trainModel` : create an auto-sklearn model.
+Here unit of time is in `seconds` and unit of memory is in `MegaBytes`.
+ Below is the sample request object.
   ```buildoutcfg
   {
       "data": {
-        "trainingData": "https://archive.ics.uci.edu/ml/machine-learning-databases/00264/EEG%20Eye%20State.arff",
-        "dataType": "ARFF",
-        "targetField": "eyeDetection",
+        "trainingData": "https://datahub.io/machine-learning/eeg-eye-state/r/eeg-eye-state.csv",
+        "dataType": "CSV",
+        "targetField": "Class",
         "modelType": "CLASSIFICATION"
       },
       "modelConfig": {
@@ -54,3 +57,15 @@ docker-compose down
 
 **Note:**
  - Saved models are mounted in current directory under `models/`
+
+
+# Dataset
+
+Dataset name | url | target field | Does hang?
+--- | --- | --- | ---
+First Order Theorem Proving | [link](https://datahub.io/machine-learning/first-order-theorem-proving/r/first-order-theorem-proving.csv) | Class | No
+Phoneme | [link](https://datahub.io/machine-learning/phoneme/r/phoneme.csv) | Class | No
+EEG Eye State | [link](https://datahub.io/machine-learning/eeg-eye-state/r/eeg-eye-state.csv) | Class | Yes
+Blood Transfusion | [link](https://datahub.io/machine-learning/blood-transfusion-service-center/r/blood-transfusion-service-center.csv) | Class | Yes
+
+

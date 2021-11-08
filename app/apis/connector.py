@@ -4,7 +4,7 @@ from enum import Enum
 from multiprocessing import Process
 
 from flask import Flask, Blueprint, Response, request
-from flask_restplus import Api, Resource, fields
+from flask_restplus import Api, Resource, fields, reqparse
 
 from app.apis.data import Data
 from app.core.C import get_unique_id
@@ -25,7 +25,7 @@ train_data = api.model("TrainingData", {
     'targetField': fields.String(description='training data target field name', required=True),
     'modelType': fields.String(description='model type CLASSIFICATION/REGRESSION',
                                enum=['CLASSIFICATION', 'REGRESSION'], required=True),
-    'ignoreColumns': fields.List(fields.String, description="ignore column names")
+    # 'ignoreColumns': fields.List(fields.String, description="ignore column names")
 })
 model_config = api.model("ModelConfig", {
     "totalTime": fields.Integer(description="total time for training in seconds", required=True),
@@ -38,9 +38,9 @@ train_model_request_obj = api.model('TrainingModelRequestObject', {
     "modelConfig": fields.Nested(model_config)
 })
 
-status_request_obj = api.model('StatusRequestObject', {
-    "processId": fields.String(description="process id get from /trainModel end point")
-})
+status_request_args = reqparse.RequestParser()
+status_request_args.add_argument('processId', type=str,
+                                 help="process id get from /trainModel end point", required=True)
 
 
 class ResponseStatus(str, Enum):
@@ -106,14 +106,14 @@ class RunOperation(Resource):
     @api.response(200, json.dumps({"message": "Success"}))
     @api.response(400, json.dumps({"message": "Request couldn't process:"}))
     @api.response(500, json.dumps({"message": 'Failed to serve the request:'}))
-    @api.expect(status_request_obj)
-    def post(self):
+    @api.expect(status_request_args)
+    def get(self):
         """
         get status of a process
         """
         run_response = {}
         try:
-            body = request.json
+            body = request.args
             if body:
                 process_id = body['processId']
                 response_obj = Data.get_process_status(process_id)
