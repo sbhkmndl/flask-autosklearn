@@ -12,7 +12,7 @@ The  `TEMP_FOLDER` variable in `config.py` denotes in which folder the informati
 
 # Endpoints
 
-* `/trainer/v1/trainModel` : create an auto-sklearn model.
+* `/trainer/v1/trainModel` : This `POST` request create an auto-sklearn model.
 Here unit of time is in `seconds` and unit of memory is in `MegaBytes`.
  Below is the sample request object.
   ```buildoutcfg
@@ -32,12 +32,8 @@ Here unit of time is in `seconds` and unit of memory is in `MegaBytes`.
    }
     ```
   It will return a process id, which will help to find the status of that process.
-* `/trainer/v1/getStatus` : It will return status of a training process. Below is the request object
-    ```buildoutcfg
-    {
-      "processId": "<process id get from trainModel end point>"
-    }
-    ```
+* `/trainer/v1/getStatus` : This `GET` request will return status of a training process. Below are the request parameters
+    * `processId` : process id get from trainModel end point
     
 # Docker Service Up
 ```buildoutcfg
